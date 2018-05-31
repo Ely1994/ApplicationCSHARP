@@ -24,40 +24,32 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btn_event = new System.Windows.Forms.Button();
             this.btn_Club = new System.Windows.Forms.Button();
             this.Adherents = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.btn_event = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
             // 
-            /*
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "logofranck.png");
-            */
             // 
             // panel1
             // 
-            /*
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(2, 1);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(545, 260);
-            this.panel1.TabIndex = 4;
-            */
+            this.panel1.Size = new System.Drawing.Size(543, 268);
+            this.panel1.TabIndex = 6;
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -68,6 +60,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(545, 48);
             this.panel2.TabIndex = 5;
+            // 
+            // btn_event
+            // 
+            this.btn_event.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btn_event.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_event.Location = new System.Drawing.Point(221, 5);
+            this.btn_event.Name = "btn_event";
+            this.btn_event.Size = new System.Drawing.Size(101, 37);
+            this.btn_event.TabIndex = 2;
+            this.btn_event.Text = "Evenements";
+            this.btn_event.UseVisualStyleBackColor = false;
+            this.btn_event.Click += new System.EventHandler(this.btn_event_Click);
             // 
             // btn_Club
             // 
@@ -92,18 +96,6 @@
             this.Adherents.Text = "Adhérents";
             this.Adherents.UseVisualStyleBackColor = false;
             this.Adherents.Click += new System.EventHandler(this.Adherents_Click);
-            // 
-            // btn_event
-            // 
-            this.btn_event.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btn_event.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_event.Location = new System.Drawing.Point(221, 5);
-            this.btn_event.Name = "btn_event";
-            this.btn_event.Size = new System.Drawing.Size(101, 37);
-            this.btn_event.TabIndex = 2;
-            this.btn_event.Text = "Evenements";
-            this.btn_event.UseVisualStyleBackColor = false;
-            this.btn_event.Click += new System.EventHandler(this.btn_event_Click);
             // 
             // Accueil
             // 

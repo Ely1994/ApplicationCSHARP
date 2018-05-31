@@ -12,7 +12,6 @@ namespace M2LCSHARP.DATA_METHODES {
             List<adherent> Liste = new List<adherent>();
             BDD_Adhérents BD = new BDD_Adhérents();
             Liste = BD.Readadherent();
-
             return Liste;
         }
         public static List<club> Créer_Liste_Club() {
@@ -27,7 +26,5 @@ namespace M2LCSHARP.DATA_METHODES {
             Liste = BD.ReadEvent();
             return Liste;
         }
-
-
     }
 }

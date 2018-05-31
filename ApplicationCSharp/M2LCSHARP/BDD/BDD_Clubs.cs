@@ -20,15 +20,15 @@ namespace M2LCSHARP.BDD {
 
             using (connection) {
                 connection.Open();
-                string requete = "SELECT `id_club`,`Titre_club`,`url_club`,`Adresse_club`,`Code_Postal_club`,`Ville_club`,`mail_club`,`telephone_club`,libelle,type_club.id_type_club from club inner join type_club on club.id_type_club=type_club.id_type_club order by `id_club`";
+                string requete = "SELECT `C_id`,`C_nom`,`C_url`,`C_adresse`,`C_codepostal`,`C_ville`,`C_email`,`C_tel`,'T_libelle',type_club.T_id FROM club INNER JOIN type_club ON club.C_fk_type = type_club.T_id ORDER BY `C_id`";
 
 
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 using (MySqlDataReader datareader = cmd.ExecuteReader()) {
                     while (datareader.Read()) {
-                        typec = new type_club(Convert.ToInt32(datareader["id_type_club"]), (string)datareader["libelle"]);
-                        club = new club((string)datareader["Titre_club"], (string)datareader["url_club"], (string)datareader["Adresse_club"], (string)datareader["Code_Postal_club"], (string)datareader["Ville_club"], (string)datareader["mail_club"], Convert.ToInt32(datareader["telephone_club"]), typec);
-                        club.id_club = Convert.ToInt32(datareader["id_club"]);
+                        typec = new type_club(Convert.ToInt32(datareader["T_id"]), (string)datareader["T_libelle"]);
+                        club = new club((string)datareader["C_nom"], (string)datareader["C_url"], (string)datareader["C_adresse"], (string)datareader["C_codepostal"], (string)datareader["C_ville"], (string)datareader["C_email"], Convert.ToInt32(datareader["C_tel"]), typec);
+                        club.id_club = Convert.ToInt32(datareader["C_id"]);
 
                         //typec.libelle = (string)datareader["libelle"];
                         //club.type.id_type = (int)datareader["id_type_club"];
@@ -49,7 +49,7 @@ namespace M2LCSHARP.BDD {
             int Nbr = 0;
             using (connection) {
                 connection.Open();
-                string requete = "SELECT count(id_adherent) as Nbr from adherent where adherent.id_club=@id";
+                string requete = "SELECT count(A_id) AS Nbr FROM adherent WHERE adherent.A_id=@id";
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 cmd.Parameters.AddWithValue("@id", club.id_club);
                 using (MySqlDataReader datareader = cmd.ExecuteReader()) {
@@ -68,11 +68,11 @@ namespace M2LCSHARP.BDD {
             type_club type;
             using (connection) {
                 connection.Open();
-                string requete = "select * from type_club";
+                string requete = "SELECT * FROM type_club";
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 using (MySqlDataReader datareader = cmd.ExecuteReader()) {
                     while (datareader.Read()) {
-                        type = new type_club(Convert.ToInt32(datareader["id_type_club"]), (string)datareader["libelle"]);
+                        type = new type_club(Convert.ToInt32(datareader["T_id"]), (string)datareader["T_libelle"]);
                         Laliste.Add(type);
 
                     }
@@ -88,12 +88,12 @@ namespace M2LCSHARP.BDD {
             List<type_club> Liste = new List<type_club>();
             using (connection) {
                 connection.Open();
-                string requete = "select * from type_club where libelle=@libelle";
+                string requete = "SELECT * FROM type_club WHERE T_libelle=@libelle";
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 cmd.Parameters.AddWithValue("@libelle", lib);
                 using (MySqlDataReader datareader = cmd.ExecuteReader()) {
                     while (datareader.Read()) {
-                        typeclu = new type_club(Convert.ToInt32(datareader["id_type_club"]), (string)datareader["libelle"]);
+                        typeclu = new type_club(Convert.ToInt32(datareader["T_id"]), (string)datareader["T_libelle"]);
                         Liste.Add(typeclu);
                     }
 
@@ -106,7 +106,7 @@ namespace M2LCSHARP.BDD {
         public void ajouterClub(club UnClub) {
             using (connection) {
                 connection.Open();
-                string requete = "INSERT INTO `club` (`id_club`, `Titre_club`, `url_club`, `Adresse_club`, `Code_Postal_club`, `Ville_club`, `mail_club`, `telephone_club`, `id_type_club`) VALUES(NULL, @titre,@url,@adresse,@cp,@ville,@mail,@tel,@type)";
+                string requete = "INSERT INTO `club` (`C_id`, `C_nom`, `C_url`, `C_adresse`, `C_codepostal`, `C_ville`, `C_email`, `C_tel`, `C_fk_type`) VALUES(NULL, @titre,@url,@adresse,@cp,@ville,@mail,@tel,@type)";
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 cmd.Parameters.AddWithValue("@titre", UnClub.Titre_club);
                 cmd.Parameters.AddWithValue("@url", UnClub.url_club);
@@ -124,7 +124,7 @@ namespace M2LCSHARP.BDD {
         public void modifier_club(club UnClub) {
             using (connection) {
                 connection.Open();
-                string requete = "UPDATE `club` SET `Titre_club` = @titre, `url_club` = @url, `Adresse_club` = @adresse, `Code_Postal_club` = @cp, `Ville_club` = @ville, `mail_club` = @mail, `telephone_club` = @tel WHERE `club`.`id_club` = @idc";
+                string requete = "UPDATE `club` SET `C_nom` = @titre, `C_url` = @url, `C_adresse` = @adresse, `C_codepostal` = @cp, `C_ville` = @ville, `C_email` = @mail, `C_tel` = @tel WHERE `club`.`C_id` = @idc";
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 cmd.Parameters.AddWithValue("@titre", UnClub.Titre_club);
                 cmd.Parameters.AddWithValue("@url", UnClub.url_club);

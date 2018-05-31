@@ -33,26 +33,20 @@ namespace M2LCSHARP.BDD {
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 using (MySqlDataReader datareader = cmd.ExecuteReader()) {
                     while (datareader.Read()) {
-                        adhérents = new adherent((string)datareader["A_nom"], (string)datareader["A_prenom"], (string)datareader["A_cp"], (string)datareader["A_adresse"], (string)datareader["A_ville"]);
-
+                        adhérents = new adherent((string)datareader["A_nom"], (string)datareader["A_prenom"], (string)datareader["A_sexe"], (string)datareader["A_cp"], (string)datareader["A_adresse"], (string)datareader["A_ville"]);
                         adhérents.DateNaissance = (DateTime)datareader["A_datenaiss"];
                         adhérents.Id = (int)datareader["A_id"];
 
-
-                        if (datareader["id_club"] != System.DBNull.Value && datareader["numero_licence"] != System.DBNull.Value) {
-                            type = new type_club(Convert.ToInt32(datareader["id_type_club"]), (string)datareader["libelle"]);
-                            club = new club((string)datareader["Titre_club"], (string)datareader["url_club"], (string)datareader["Adresse_club"], (string)datareader["Code_Postal_club"], (string)datareader["Ville_club"], (string)datareader["mail_club"], Convert.ToInt32(datareader["telephone_club"]), type);
-                            adhérents.numero_licence = Convert.ToInt32(datareader["numero_licence"]);
-                            adhérents.Cotisation = Convert.ToInt32(datareader["cotisation_adherent"]);
+                        if (datareader["A_fk_club"] != System.DBNull.Value && datareader["A_licence"] != System.DBNull.Value) {
+                            type = new type_club(Convert.ToInt32(datareader["T_id"]), (string)datareader["T_libelle"]);
+                            club = new club((string)datareader["C_nom"], (string)datareader["C_url"], (string)datareader["C_adresse"], (string)datareader["C_codepostal"], (string)datareader["C_ville"], (string)datareader["C_email"], Convert.ToInt32(datareader["C_tel"]), type);
+                            adhérents.numero_licence = Convert.ToInt32(datareader["A_licence"]);
+                            adhérents.Cotisation = Convert.ToInt32(datareader["A_cotisation"]);
                             adhérents.club = club;
                         }
-
-
-
                         liste.Add(adhérents);
 
                     }
-
                 }
             }
             return liste;
@@ -60,15 +54,15 @@ namespace M2LCSHARP.BDD {
         public void ajouterAdherent(adherent adhérents) {
             using (connection) {
                 connection.Open();
-                string requete = "INSERT INTO `adherent` (`id_adherent`, `numero_licence`, `Nom_adherent`, `Prenom_adherent`, `Date_naissance_adherent`, `Adresse_adherent`, `Code_Postal_adherent`, `Ville_adherent`, `cotisation_adherent`, `id_club`) VALUES (NULL,NULL, @nom, @prenom, @date, @Adresse, @codepostal, @ville,@cotisation, NULL);";
+                string requete = "INSERT INTO `adherent` ('A_id', `A_licence`, `A_nom`, `A_prenom`, 'A_sexe', `A_datenaiss`, A_adresse`, `A_cp`, `A_ville`, `A_cotisation`, A_fk_evenement, A_fk_club) VALUES (NULL,@nom, @prenom, @sexe, @date, @Adresse, @codepostal, @ville,@cotisation, NULL, NULL);";
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 cmd.Parameters.AddWithValue("@nom", adhérents.Nom);
                 cmd.Parameters.AddWithValue("@prenom", adhérents.Prenom);
+                cmd.Parameters.AddWithValue("@sexe", adhérents.Sexe);
                 cmd.Parameters.AddWithValue("@date", adhérents.DateNaissance);
                 cmd.Parameters.AddWithValue("@adresse", adhérents.Adresse);
                 cmd.Parameters.AddWithValue("@codepostal", adhérents.CodePostal);
                 cmd.Parameters.AddWithValue("@ville", adhérents.Ville);
-                // cmd.Parameters.AddWithValue("@numero", adhérents.numero);
                 cmd.Parameters.AddWithValue("@cotisation", adhérents.Cotisation);
                 cmd.ExecuteNonQuery();
             }
@@ -77,10 +71,11 @@ namespace M2LCSHARP.BDD {
         public void ModifierAdherent(adherent adhérents) {
             using (connection) {
                 connection.Open();
-                string requete = "UPDATE `adherent` SET `Nom_adherent` = @nom, `Prenom_adherent` = @prenom, `Date_naissance_adherent` = @date, `Adresse_adherent` = @adresse, `Code_Postal_adherent` = @codepostal, `Ville_adherent` = @ville, `numero_licence` = @numero, `cotisation_adherent`=@coti WHERE `adherent`.`id_adherent` = @id";
+                string requete = "UPDATE `adherent` SET `A_nom` = @nom, `A_prenom` = @prenom, `A_sexe` = @sexe, `A_datenaiss` = @date, `A_adresse` = @adresse, `A_cp` = @codepostal, `A_ville` = @ville, `A_licence` = @numero, `A_cotisation`=@coti WHERE `adherent`.`A_id` = @id";
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 cmd.Parameters.AddWithValue("@nom", adhérents.Nom);
                 cmd.Parameters.AddWithValue("@prenom", adhérents.Prenom);
+                cmd.Parameters.AddWithValue("@sexe", adhérents.Sexe);
                 cmd.Parameters.AddWithValue("@date", adhérents.DateNaissance);
                 cmd.Parameters.AddWithValue("@adresse", adhérents.Adresse);
                 cmd.Parameters.AddWithValue("@codepostal", adhérents.CodePostal);
@@ -96,7 +91,7 @@ namespace M2LCSHARP.BDD {
         public void SupprimerAdherent(adherent adhérents) {
             using (connection) {
                 connection.Open();
-                string requete = "DELETE FROM `adherent` WHERE `adherent`.`id_adherent` = @id";
+                string requete = "DELETE FROM `adherent` WHERE `adherent`.`A_id` = @id";
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 cmd.Parameters.AddWithValue("@id", adhérents.Id);
                 cmd.ExecuteNonQuery();
@@ -108,7 +103,7 @@ namespace M2LCSHARP.BDD {
         public void AjouterUnClub(club Unclub, adherent UnAdh) {
             using (connection) {
                 connection.Open();
-                string requete = "UPDATE `adherent` SET `id_club` = @idC WHERE `adherent`.`id_adherent`= @idA";
+                string requete = "UPDATE `adherent` SET `C_id` = @idC WHERE `adherent`.`A_id`= @idA";
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 cmd.Parameters.AddWithValue("@idA", UnAdh.Id);
                 cmd.Parameters.AddWithValue("@idC", Unclub.id_club);
