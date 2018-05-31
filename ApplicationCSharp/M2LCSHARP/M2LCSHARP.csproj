@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\xunit.core.2.3.1\build\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.3.1\build\xunit.core.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{698D9F9E-8FF3-4F19-91B7-CC13280B0A9A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>M2LCSHARP</RootNamespace>
+    <AssemblyName>M2LCSHARP</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.3\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.6.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="XAct.Core.PCL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XAct.Core.PCL.0.0.5014.0\lib\portable-win+net45+sl50+wp80\XAct.Core.PCL.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.assert, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.assert.2.3.1\lib\netstandard1.1\xunit.assert.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.core, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.extensibility.core.2.3.1\lib\netstandard1.1\xunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.execution.desktop, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.extensibility.execution.2.3.1\lib\net452\xunit.execution.desktop.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BDD\BDD_Adhérents.cs" />
+    <Compile Include="BDD\BDD_Clubs.cs" />
+    <Compile Include="BDD\BDD_evenement.cs" />
+    <Compile Include="BDD\connexion_BDD.cs" />
+    <Compile Include="DATA_METHODES\gestion_Clubs.cs" />
+    <Compile Include="DATA_METHODES\gestion_Evenements.cs" />
+    <Compile Include="Vues\Accueil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Accueil.Designer.cs">
+      <DependentUpon>Accueil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DATA\adherent.cs" />
+    <Compile Include="DATA\club.cs" />
+    <Compile Include="DATA\evenement.cs" />
+    <Compile Include="DATA\type_club.cs" />
+    <Compile Include="DATA_METHODES\gestion_Adherents.cs" />
+    <Compile Include="DATA_METHODES\gestion_Listes.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vues\ajout_adh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\ajout_adh.Designer.cs">
+      <DependentUpon>ajout_adh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\ajout_club.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\ajout_club.Designer.cs">
+      <DependentUpon>ajout_club.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\ajout_event.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\ajout_event.Designer.cs">
+      <DependentUpon>ajout_event.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\Gestion_Adherents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Gestion_Adherents.Designer.cs">
+      <DependentUpon>Gestion_Adherents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\Gestion_Clubs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Gestion_Clubs.Designer.cs">
+      <DependentUpon>Gestion_Clubs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\Gestion_Evenements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Gestion_Evenements.Designer.cs">
+      <DependentUpon>Gestion_Evenements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\Modifer_Adh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Modifer_Adh.Designer.cs">
+      <DependentUpon>Modifer_Adh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\Modifier_Club.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Modifier_Club.Designer.cs">
+      <DependentUpon>Modifier_Club.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\Modifier_event.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Modifier_event.Designer.cs">
+      <DependentUpon>Modifier_event.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Vues\Accueil.resx">
+      <DependentUpon>Accueil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\ajout_adh.resx">
+      <DependentUpon>ajout_adh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\ajout_club.resx">
+      <DependentUpon>ajout_club.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\ajout_event.resx">
+      <DependentUpon>ajout_event.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\Gestion_Adherents.resx">
+      <DependentUpon>Gestion_Adherents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\Gestion_Clubs.resx">
+      <DependentUpon>Gestion_Clubs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\Gestion_Evenements.resx">
+      <DependentUpon>Gestion_Evenements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\Modifer_Adh.resx">
+      <DependentUpon>Modifer_Adh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\Modifier_Club.resx">
+      <DependentUpon>Modifier_Club.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\Modifier_event.resx">
+      <DependentUpon>Modifier_event.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="BDD\.vs\BDD\v15\.suo" />
+    <None Include="BDD\.vs\ProjectSettings.json" />
+    <None Include="BDD\.vs\slnx.sqlite" />
+    <None Include="BDD\.vs\VSWorkspaceState.json" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\xunit.core.2.3.1\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.3.1\build\xunit.core.props'))" />
+    <Error Condition="!Exists('..\packages\xunit.core.2.3.1\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.3.1\build\xunit.core.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <Import Project="..\packages\xunit.core.2.3.1\build\xunit.core.targets" Condition="Exists('..\packages\xunit.core.2.3.1\build\xunit.core.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+</Project>
