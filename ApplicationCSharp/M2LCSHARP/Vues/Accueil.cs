@@ -24,8 +24,6 @@ namespace M2LCSHARP {
 
         }
 
-
-
         private void Adherents_Click(object sender, System.EventArgs e) {
             Gestion_Adherents GA = new Gestion_Adherents(GAdhe, GClubs);
 
@@ -36,8 +34,6 @@ namespace M2LCSHARP {
             Gestion_Clubs GC = new Gestion_Clubs(GClubs, GAdhe);
             GC.ShowDialog();
         }
-
-
 
         private void btn_event_Click(object sender, System.EventArgs e) {
             Gestion_Evenements GE = new Gestion_Evenements(GEvent, GClubs);
