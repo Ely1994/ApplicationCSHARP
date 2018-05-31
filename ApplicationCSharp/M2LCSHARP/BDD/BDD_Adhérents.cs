@@ -33,10 +33,10 @@ namespace M2LCSHARP.BDD {
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 using (MySqlDataReader datareader = cmd.ExecuteReader()) {
                     while (datareader.Read()) {
-                        adhérents = new adherent((string)datareader["Nom_adherent"], (string)datareader["Prenom_adherent"], (string)datareader["Code_Postal_adherent"], (string)datareader["Adresse_adherent"], (string)datareader["Ville_adherent"]);
+                        adhérents = new adherent((string)datareader["A_nom"], (string)datareader["A_prenom"], (string)datareader["A_cp"], (string)datareader["A_adresse"], (string)datareader["A_ville"]);
 
-                        adhérents.DateNaissance = (DateTime)datareader["Date_naissance_adherent"];
-                        adhérents.Id = (int)datareader["id_adherent"];
+                        adhérents.DateNaissance = (DateTime)datareader["A_datenaiss"];
+                        adhérents.Id = (int)datareader["A_id"];
 
 
                         if (datareader["id_club"] != System.DBNull.Value && datareader["numero_licence"] != System.DBNull.Value) {

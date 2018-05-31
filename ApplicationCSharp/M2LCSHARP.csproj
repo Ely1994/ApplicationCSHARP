@@ -187,6 +187,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="DRESS Elie - Fiche E4 appli.pdf" />
     <None Include="M2LCSHARP\packages.config" />
     <None Include="M2LCSHARP\Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -202,6 +203,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Spécifications techniques du projet application, ED.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="M2LCSHARP\App.config" />
