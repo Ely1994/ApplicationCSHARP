@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace M2LCSHARP.DATA {
     public class adherent {
-        public adherent(string nom, string prenom, string sexe, string codePostal, string adresse, string ville) {
+        public adherent(string nom, string prenom ,string codePostal, string adresse, string ville) {
 
 
             Nom = nom;
             Prenom = prenom;
-            Sexe = sexe;
             CodePostal = codePostal;
             Adresse = adresse;
             Ville = ville;
@@ -21,7 +20,6 @@ namespace M2LCSHARP.DATA {
         public int numero_licence { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
-        public string Sexe { get; set; }
         public string CodePostal { get; set; }
         public string Adresse { get; set; }
         public string Ville { get; set; }

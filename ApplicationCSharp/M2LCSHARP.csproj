@@ -181,6 +181,9 @@
     <EmbeddedResource Include="M2LCSHARP\Vues\Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="M2LCSHARP\Vues\ajout_adh.resx">
+      <DependentUpon>ajout_adh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

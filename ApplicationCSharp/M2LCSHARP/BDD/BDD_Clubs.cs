@@ -28,6 +28,7 @@ namespace M2LCSHARP.BDD {
                     while (datareader.Read()) {
                         typec = new type_club(Convert.ToInt32(datareader["T_id"]), (string)datareader["T_libelle"]);
                         club = new club((string)datareader["C_nom"], (string)datareader["C_url"], (string)datareader["C_adresse"], (string)datareader["C_codepostal"], (string)datareader["C_ville"], (string)datareader["C_email"], Convert.ToInt32(datareader["C_tel"]), typec);
+                        //Convert.ToInt32
                         club.id_club = Convert.ToInt32(datareader["C_id"]);
 
                         //typec.libelle = (string)datareader["libelle"];

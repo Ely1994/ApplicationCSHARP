@@ -24,7 +24,7 @@ namespace M2LCSHARP.BDD {
             club club;
             type_club type;
             //connexion_BDD connect = new connexion_BDD();
-            connection = getConnection();
+            //connection = getConnection();
 
             using (connection) {
                 connection.Open();
@@ -33,7 +33,7 @@ namespace M2LCSHARP.BDD {
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 using (MySqlDataReader datareader = cmd.ExecuteReader()) {
                     while (datareader.Read()) {
-                        adhérents = new adherent((string)datareader["A_nom"], (string)datareader["A_prenom"], (string)datareader["A_sexe"], (string)datareader["A_cp"], (string)datareader["A_adresse"], (string)datareader["A_ville"]);
+                        adhérents = new adherent((string)datareader["A_nom"], (string)datareader["A_prenom"], (string)datareader["A_cp"], (string)datareader["A_adresse"], (string)datareader["A_ville"]);
                         adhérents.DateNaissance = (DateTime)datareader["A_datenaiss"];
                         adhérents.Id = (int)datareader["A_id"];
 
@@ -54,11 +54,10 @@ namespace M2LCSHARP.BDD {
         public void ajouterAdherent(adherent adhérents) {
             using (connection) {
                 connection.Open();
-                string requete = "INSERT INTO `adherent` ('A_id', `A_licence`, `A_nom`, `A_prenom`, 'A_sexe', `A_datenaiss`, A_adresse`, `A_cp`, `A_ville`, `A_cotisation`, A_fk_evenement, A_fk_club) VALUES (NULL,@nom, @prenom, @sexe, @date, @Adresse, @codepostal, @ville,@cotisation, NULL, NULL);";
+                string requete = "INSERT INTO `adherent` ('A_id', `A_licence`, `A_nom`, `A_prenom`, `A_datenaiss`, A_adresse`, `A_cp`, `A_ville`, `A_cotisation`, A_fk_evenement, A_fk_club) VALUES (NULL,@nom, @prenom, @sexe, @date, @Adresse, @codepostal, @ville,@cotisation, NULL, NULL);";
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 cmd.Parameters.AddWithValue("@nom", adhérents.Nom);
                 cmd.Parameters.AddWithValue("@prenom", adhérents.Prenom);
-                cmd.Parameters.AddWithValue("@sexe", adhérents.Sexe);
                 cmd.Parameters.AddWithValue("@date", adhérents.DateNaissance);
                 cmd.Parameters.AddWithValue("@adresse", adhérents.Adresse);
                 cmd.Parameters.AddWithValue("@codepostal", adhérents.CodePostal);
@@ -71,11 +70,10 @@ namespace M2LCSHARP.BDD {
         public void ModifierAdherent(adherent adhérents) {
             using (connection) {
                 connection.Open();
-                string requete = "UPDATE `adherent` SET `A_nom` = @nom, `A_prenom` = @prenom, `A_sexe` = @sexe, `A_datenaiss` = @date, `A_adresse` = @adresse, `A_cp` = @codepostal, `A_ville` = @ville, `A_licence` = @numero, `A_cotisation`=@coti WHERE `adherent`.`A_id` = @id";
+                string requete = "UPDATE `adherent` SET `A_nom` = @nom, `A_prenom` = @prenom, `A_datenaiss` = @date, `A_adresse` = @adresse, `A_cp` = @codepostal, `A_ville` = @ville, `A_licence` = @numero, `A_cotisation`=@coti WHERE `adherent`.`A_id` = @id";
                 MySqlCommand cmd = new MySqlCommand(requete, connection);
                 cmd.Parameters.AddWithValue("@nom", adhérents.Nom);
                 cmd.Parameters.AddWithValue("@prenom", adhérents.Prenom);
-                cmd.Parameters.AddWithValue("@sexe", adhérents.Sexe);
                 cmd.Parameters.AddWithValue("@date", adhérents.DateNaissance);
                 cmd.Parameters.AddWithValue("@adresse", adhérents.Adresse);
                 cmd.Parameters.AddWithValue("@codepostal", adhérents.CodePostal);

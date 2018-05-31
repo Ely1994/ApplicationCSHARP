@@ -40,17 +40,15 @@ namespace M2LCSHARP.Vues {
 
                     GesAdh.ajouter_Adherent(adhajouté);
 
-
                     bADH.ajouterAdherent(adhajouté);
-
 
                     MessageBox.Show("L'adhérent a bien été ajouté", "ajout réussi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
-                else
+                else {
                     MessageBox.Show("Veuillez remplir tous les champs !", "champ(s) manquant(s)", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch { MessageBox.Show("Veuillez entrer une date valide !", "Date", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                }
+            } catch { MessageBox.Show("Veuillez entrer une date valide !", "Date", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
 
         }
@@ -73,6 +71,10 @@ namespace M2LCSHARP.Vues {
         }
 
         private void ajout_adh_Load(object sender, EventArgs e) {
+
+        }
+
+        private void txt_naissance_adh_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) {
 
         }
     }

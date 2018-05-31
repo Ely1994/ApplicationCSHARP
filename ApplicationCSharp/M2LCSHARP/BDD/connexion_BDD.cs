@@ -26,13 +26,8 @@ namespace M2LCSHARP.BDD {
             */
             
             //connectionString = "Data Source=localhost;Initial Catalog=applibd;User ID=root;Password=";
-            string connexionParams = "SERVER=localhost;PORT=3306;DATABASE=applibd;UID=root;PASSWORD=; persistsecurityinfo=True; MySqlSslMode=none";
+            string connexionParams = "SERVER=localhost;PORT=3306;DATABASE=applibd;UID=root;PASSWORD=; persistsecurityinfo=True; SslMode=none";
             this.connection = new MySqlConnection(connexionParams);
-        }
-
-        public MySqlConnection getConnection() {
-            connectionString = "Data Source=localhost;Initial Catalog=applibd;User ID=root;Password=";
-            return this.connection = new MySqlConnection(connectionString);
         }
     }
 }
